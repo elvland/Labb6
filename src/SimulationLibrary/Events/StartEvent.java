@@ -1,8 +1,7 @@
 package SimulationLibrary.Events;
 
 import SimulationLibrary.State.State;
-
-import java.awt.*;
+import SimulationLibrary.EventQueue;
 
 public class StartEvent extends Event{
 
@@ -14,5 +13,7 @@ public class StartEvent extends Event{
     public void execute(){
 
     }
-
+    public  String toString(){
+        return "Start";
+    }
 }

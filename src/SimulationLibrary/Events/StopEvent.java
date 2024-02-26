@@ -1,8 +1,9 @@
 package SimulationLibrary.Events;
 
 import SimulationLibrary.State.State;
-
-import java.awt.*;
+import SimulationLibrary.EventQueue;
+import SupermarketSimulation.SupermarketState.SupermarketState;
+import SupermarketSimulation.View.SupermarketView;
 
 public class StopEvent extends Event{
 
@@ -14,5 +15,12 @@ public class StopEvent extends Event{
     @Override
     public void execute(){
         state.stopSim();
+        state.infoObserver();
+
+
+
+    }
+    public  String toString(){
+        return "STOP";
     }
 }

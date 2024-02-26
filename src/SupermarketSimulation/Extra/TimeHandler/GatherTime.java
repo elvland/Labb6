@@ -10,4 +10,9 @@ public class GatherTime implements  TimeStrategy{
     public double finishEventTime(double currentTime) {
         return  currentTime + uniRandom.next();
     }
+
+    @Override
+    public Object getEventType() {
+        return this;
+    }
 }

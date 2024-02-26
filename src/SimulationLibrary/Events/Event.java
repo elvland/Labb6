@@ -1,8 +1,7 @@
 package SimulationLibrary.Events;
 
 import SimulationLibrary.State.State;
-
-import java.awt.*;
+import SimulationLibrary.EventQueue;
 
 public abstract class Event {
 
@@ -21,7 +20,6 @@ public abstract class Event {
         return this.calculatedTime;
     }
 
-    public void execute(){
 
-    }
+    public abstract void execute();
 }

@@ -1,12 +1,10 @@
-package SupermarketSimulation.Extra;
+package SupermarketSimulation.SupermarketState;
 
 import SupermarketSimulation.Extra.Enum.CheckoutStatus;
 
 import java.util.ArrayList;
 
 public class CheckoutHelper {
-    private CheckoutStatus status;
-
     private final int totCheckouts;
     private int freeCashCounter;
 
@@ -15,7 +13,7 @@ public class CheckoutHelper {
         totCheckouts = checkOutArray.length;
     }
 
-    public void fillEmptyCheckOuts(CheckoutStatus[] checkOutArray){
+    protected void fillEmptyCheckOuts(CheckoutStatus[] checkOutArray){
 
         for (int i = 0; i <checkOutArray.length; i++) {
             checkOutArray[i] = CheckoutStatus.Free;
@@ -23,7 +21,7 @@ public class CheckoutHelper {
         this.freeCashCounter = checkOutArray.length; // Start from the last cashier [0,1,2,3,4,5] <----
     }
     //protected
-     public int countFreeCashiers(CheckoutStatus[] checkOutArray) {
+     protected int countFreeCashiers(CheckoutStatus[] checkOutArray) {
         int freeCount = 0;
         for (CheckoutStatus checkStatus : checkOutArray) {
             if (checkStatus == CheckoutStatus.Free) {
@@ -33,7 +31,7 @@ public class CheckoutHelper {
         return freeCount;
     }
 
-    public void occupyCheckout(CheckoutStatus[] checkOutArray) {
+    protected void occupyCheckout(CheckoutStatus[] checkOutArray) {
         if(availableCashouts(checkOutArray)){
         checkOutArray[--freeCashCounter] = CheckoutStatus.Occupied;
         } else {

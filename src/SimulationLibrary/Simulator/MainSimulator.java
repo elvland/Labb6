@@ -6,18 +6,18 @@ import SimulationLibrary.State.State;
 
 public class MainSimulator {
 
-    private EventQueue eventQueue;
-    private State state;
 
-    public MainSimulator(State state,EventQueue eventQueue ){
-        this.state = state;
-        this.eventQueue = eventQueue;
+
+    public MainSimulator( ){
+
     }
 
-    public void run(State state,EventQueue eventQueue){
-        while(state.SimulatorRunning()){
+    public State run(State state, EventQueue eventQueue){
+        do{
             Event nextEvent = eventQueue.removeFirst();
             nextEvent.execute();
-        }
+        }while(state.SimulatorRunning() || !eventQueue.isEmpty());
+
+        return state;
     }
 }

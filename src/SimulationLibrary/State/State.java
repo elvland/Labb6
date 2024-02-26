@@ -10,7 +10,6 @@ public class State extends Observable {
 
     public State (){
         this.stopSimulator = false;
-
     }
 
     public void stopSim(){
@@ -21,14 +20,21 @@ public class State extends Observable {
     {
         return !this.stopSimulator;
     }
-    public void infoObserver(){
+
+    public void infoObserver(){ //Notify observers with updated state
         setChanged();
         notifyObservers(this);
+    }
+
+    protected void setTime(double time) {
+        if(time >= this.currentCalculatedTime) {
+            this.currentCalculatedTime = time;
+        }
 
     }
 
-    public void setTime(double time) {
-        this.currentCalculatedTime = time;
+    public double getTime(){
+        return this.currentCalculatedTime;
     }
 
 
