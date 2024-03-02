@@ -3,7 +3,7 @@ package Optimize;
 public interface K {
 
 	// Ex 1: (som sim1)
-/*  public static final int M = 5;
+ /*public static final int M = 5;
   public static final double L = 1;
 
   public static final double LOW_COLLECTION_TIME = 0.5d;
@@ -14,10 +14,10 @@ public interface K {
 
   public static final int SEED = 1234;
   public static final double END_TIME = 10.0d;
-  public static final double STOP_TIME = 999.0d;*/
-
+  public static final double STOP_TIME = 999.0d;
+*/
 	// Ex 2:
-/*	 public static final int M = 7;
+/*	public static final int M = 7;
 	  public static final double L = 2;
 
 	  public static final double LOW_COLLECTION_TIME = 0.5d;
@@ -50,6 +50,9 @@ public interface K {
 
 
 
+
+
+
    public static final int M = 100;
     public static final double L = 50;
 
@@ -62,6 +65,8 @@ public interface K {
     public static final int SEED = 42;
     public static final double END_TIME = 20.0d;
     public static final double STOP_TIME = 999.0d;
+
+
 
 
 
@@ -84,20 +89,20 @@ public interface K {
     public static final double STOP_TIME = 999.0d;
 */
 
-// Ex 6
-    
-//    public static final int M = 1400;
-//    public static final double L = 700;
-//
-//    public static final double LOW_COLLECTION_TIME = 0.45d;
-//    public static final double HIGH_COLLECTION_TIME = 0.65d;
-//
-//    public static final double LOW_PAYMENT_TIME = 0.2d;
-//    public static final double HIGH_PAYMENT_TIME = 0.3d;
-//
-//    public static final int SEED = 42;
-//    public static final double END_TIME = 20.0d;
-//    public static final double STOP_TIME = 999.0d;
+ //Ex 6
+    /*
+    public static final int M = 1400;
+    public static final double L = 700;
+
+    public static final double LOW_COLLECTION_TIME = 0.45d;
+    public static final double HIGH_COLLECTION_TIME = 0.65d;
+
+    public static final double LOW_PAYMENT_TIME = 0.2d;
+    public static final double HIGH_PAYMENT_TIME = 0.3d;
+
+    public static final int SEED = 42;
+    public static final double END_TIME = 20.0d;
+    public static final double STOP_TIME = 999.0d;*/
 
 // Ex 7
 //    public static final int M = 1400;

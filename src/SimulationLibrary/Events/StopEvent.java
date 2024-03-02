@@ -4,6 +4,14 @@ import SimulationLibrary.State.State;
 import SimulationLibrary.EventQueue;
 import SupermarketSimulation.SupermarketState.SupermarketState;
 import SupermarketSimulation.View.SupermarketView;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The StopEvent class represents an event that stops the simulation.
+ */
 
 public class StopEvent extends Event{
 
@@ -16,8 +24,6 @@ public class StopEvent extends Event{
     public void execute(){
         state.stopSim();
         state.infoObserver();
-
-
 
     }
     public  String toString(){

@@ -6,6 +6,14 @@ import SimulationLibrary.State.State;
 import SupermarketSimulation.Extra.Customer;
 import SupermarketSimulation.SupermarketState.SupermarketState;
 
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The ArriveEvent class represents an event in the supermarket simulation where a customer arrives at the store.
+ */
 
 public class ArriveEvent extends Event {
     private Customer customer;
@@ -31,7 +39,7 @@ public class ArriveEvent extends Event {
 
                 queue.add(gatherEvent);
             } else{
-                superState.addRejectedCustomer(); // STORE IS FULL
+                superState.addRejectedCustomer(); // STORE IS OPEN BUT FULL = REJECTED
             }
 
             double arriveTime = superState.getArriveTime(super.getCalculatedTime());

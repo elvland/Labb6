@@ -1,6 +1,16 @@
 package SupermarketSimulation.Extra.TimeHandler;
 
 import java.util.Random;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ */
+
+/**
+ * The ExponentialRandomStream class generates exponentially distributed random numbers.
+ */
 
 public class ExponentialRandomStream {
 
@@ -17,7 +27,7 @@ public class ExponentialRandomStream {
 
 
 	public double next() {
-	return  -Math.log(rand.nextDouble())/lambda;
+		return  -Math.log(rand.nextDouble())/lambda;
 	}
 }
 

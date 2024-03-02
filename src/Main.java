@@ -6,16 +6,31 @@ import Optimize.K;
 public class Main {
     public static void main(String[] args) {
         // FOR THE EXAMPLE TEST 1 & 2
-        new runSim().run(1);
-        new runSim().run(2);
-        System.out.println("nice");
-        //runSim gogo = new runSim();
-       //gogo.run();
 
-    //   System.out.println("hejsan");
-      // Optimize opt = new Optimize();
+        /**
+         * RUNSIM Delen
+         */
 
-     // opt.maxCashoutMinMiss(K.M, K.L,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
+     //   System.out.println("nice");
+
+
+        /**
+         * OPTIMIZE DELEN
+         */
+       Optimize opt = new Optimize();
+       //METHOD 1
+        //opt.optimizeMethod1(3,K.M,K.L,
+        // K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME
+        // ,K.HIGH_PAYMENT_TIME,K.SEED,K.END_TIME,K.STOP_TIME,true);
+
+        //METHOD 2
+/*        System.out.println(opt.minimalMissedCustomOPT(K.M, K.L,K.LOW_COLLECTION_TIME,
+                K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME
+                ,K.SEED,K.END_TIME,K.STOP_TIME) + " ST KASSOR ÄR DET BÄSTA FÖR MINIMALT MISSADE KUNDER");*/
+        //METHOD3
+       opt.maxCashoutMinMiss(K.M, K.L,K.LOW_COLLECTION_TIME,
+                K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME
+                ,K.SEED,K.END_TIME,K.STOP_TIME);
         //System.out.println(metod3);
     //   opt.optimizeMetod3(K.M, K.L,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
 

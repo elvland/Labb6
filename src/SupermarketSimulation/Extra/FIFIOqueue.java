@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The FIFIOqueue class represents a First-In-First-Out (FIFO) queue of customers in the supermarket simulation.
+ */
 
 public class FIFIOqueue  {
 

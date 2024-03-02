@@ -15,20 +15,27 @@ import SupermarketSimulation.Extra.TimeHandler.PayTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+    /**
+     * Anton Alexandersson
+     * Olle Elvland
+     * Lukas Eriksson
+     * Vincent Gustafsson
+     *
+     * The SupermarketState class represents the state of the supermarket simulation,
+     * handling customer arrivals, checkout processes, and store status.
+     */
+
 public class SupermarketState extends State {
     private final CheckoutHelper checkoutHelper;
 
-    private final CheckoutStatus[] checkouts;
     private final FIFIOqueue checkoutQueue;
     private final CustomerFactory customerFactory;
     private final ArrayList<Customer> customers;
-    private double currentTime;
+    private final ArrayList<Object> parameters ;
     private StoreStatus storeStatus;
-    private int missedBuyers = 0;
+    private double currentTime;
     private int purchasCount;
     private int rejectionCount;
-
-    private final ArrayList<Object> parameters ;
 
     private double totFreeCashoutTime;
     private double totQueueTime;
@@ -40,36 +47,20 @@ public class SupermarketState extends State {
     private final int maxCustomers;
     private double lastPayTime;
     private int customerID;
-
     private int freeCashoutCount;
     private int totQueueCustomer;
-
-
     private int numberinstore;
     private double preEventTime;
-
     private final int totcheck;
     private int overallqueuePeople;
-
     private final boolean optimize;
-    private int totCheckouts;
-
-    public double getCloseTime() {
-        return closeTime;
-    }
-    public void setCloseTime(double closeTime){
-        this.closeTime = closeTime;
-    }
     private boolean printRes;
     private  double closeTime;
 
-    public boolean isPrintRes() {
-        return printRes;
-    }
+    //-----------TILLSTÅNDSVARIABLER--------------//
+    private final int totCheckouts;
+    private final CheckoutStatus[] checkouts;
 
-    public void setPrintRes(boolean printRes) {
-        this.printRes = printRes;
-    }
 
     public SupermarketState (int nAmountOfCheckOuts, int maxCustomers, double lambda,
                              double pmin, double pmax, double kmin,
@@ -93,13 +84,12 @@ public class SupermarketState extends State {
         this.customers = new ArrayList<>();
 
         // TIME MANAGEMENT RANDOMNESS
-
-        this.arrivalTime = new ArrivalTime((long) lambda,seed);
+        this.arrivalTime =new ArrivalTime((long) lambda,seed);
         this.gatherTime = new GatherTime(pmin,pmax,seed);
         this.payTime = new PayTime(kmin,kmax,seed);
 
 
-        //Stats
+        //Stats & State varaibles
         this.currentTime = 0;                                               //TID)
         this.eventName = "";                                                //HÄNDELSE)
         this.customerID = 0;                                                //KUND NUMMER )
@@ -111,8 +101,7 @@ public class SupermarketState extends State {
         this.rejectionCount = 0;                                            // :-()
         this.totQueueCustomer = 0;                                          //köat)
         this.totQueueTime = 0;                                              //köT)
-        //Köar)
-        //[Kassakö]
+
 
         //Results
         this.lastPayTime = 0;
@@ -120,17 +109,27 @@ public class SupermarketState extends State {
 
     }
     public boolean isOptimize() {
-        return optimize;
+        return this.optimize;
     }
 
     public ArrayList<Object> getParameters() {
-        return parameters;
+        return this.parameters;
     }
+    public double getCloseTime() {
+        return this.closeTime;
+    }
+    public void setCloseTime(double closeTime){
+        this.closeTime = closeTime;
+    }
+    public boolean isPrintRes() {
+        return this.printRes;
+    }
+
 
     //------------------View GETTERS-------------------//
 
     public int getCheckoutTOTAL(){
-        return totCheckouts;
+        return this.totCheckouts;
     }
     public double getEventTime(){ //EVENT START-TIME
         return this.currentTime;
@@ -139,61 +138,60 @@ public class SupermarketState extends State {
         return this.eventName;
     }
     public int getCustomerID(){ //CUSTOMER ID
-        return customerID;
+        return this.customerID;
     }
 
     public String getStoreStatus(){ // Storestatus string (ö = öppen, s = stängt)
         return this.storeStatus == StoreStatus.Open ? "ö" : "s";
     }
 
-
     public int getNumberInStore() {
-        return numberinstore;
+        return this.numberinstore;
     }
 
-    public void setNumberInStore() {
+    private void setNumberInStore() { //ALL TIME COUNT CUSTOMERS
         this.numberinstore++;
     }
     public double getfreeCashOutTime(){ //TOTAL FREE/WASTED CASHOUT TIME
-        return totFreeCashoutTime;
+        return this.totFreeCashoutTime;
     }
     public int getFreeCashoutCount(){ // NUMBEER OF FREE CASHOTS
         freeCashoutCount = checkoutHelper.countFreeCashiers(checkouts);
-        return freeCashoutCount;
+        return this.freeCashoutCount;
     }
 
     public int getTotCustomersInStore(){ //NUMBER OF CUSTOMERS IN STORE
-            return totCustomersInStore;
+            return this.totCustomersInStore;
     }
 
     public int getNumValidBuyers(){ //NUMBER OF SUCCESFULL PURCHASES
-        return purchasCount;
+        return this.purchasCount;
     }
 
     public int getRejectionCount(){ //NUMBER OF MISSED CUSTOMERS
-        return rejectionCount;
+        return this.rejectionCount;
     }
     public int getTotQueueCustomer(){ //NUMBEER OF CUSTOMERS QUEUED
-        return totQueueCustomer;
+        return this.totQueueCustomer;
     }
 
     public double getTotQueuTime(){ //CURRENTLY NUMBER OF CUSTOMER IN QUEUE
-        return totQueueTime;
+        return this.totQueueTime;
     }
 
     public int getTotCheckouts(){
-        return totcheck;
+        return this.totcheck;
     }
-    public void setPreEventTime(double time){
-        preEventTime = time;
+    private void setPreEventTime(double time){
+        this.preEventTime = time;
     }
 
     public double getPreEventTime(){
-        return preEventTime ;
+        return this.preEventTime ;
     }
 
     //------------------CustomerStats-------------------//
-    public void setPreCustomer(int customerID){
+    private void setPreCustomer(int customerID){
         this.customerID =customerID;
     }
     public void addRejectedCustomer(){
@@ -203,24 +201,14 @@ public class SupermarketState extends State {
     }
     public void addValidBuyer(){
         this.purchasCount++;
-        if(storeStatus == StoreStatus.Closed) {
-            addTooLate();
-        }
-
     }
 
-    private void addTooLate() {
-        missedBuyers++;
-    }
-    public int getLateBuyers() {
-        return  missedBuyers;
-    }
     public int getOverallQueueppl() {
-        return  overallqueuePeople;
+        return  this.overallqueuePeople;
     }
     public void addCustomerInStore(){
-        setNumberInStore();
-        this.totCustomersInStore++;
+        setNumberInStore(); //OVERALL TOTAL CUSTOMERS IN STORE
+        this.totCustomersInStore++; //CURRENT TOT CUSTOMER IN STORE
     }
 
     public void removeCustomer(Customer customer){
@@ -231,37 +219,38 @@ public class SupermarketState extends State {
     //------------------CheckoutFunctions------------------//
 
     public String getQueue() {
-        return checkoutQueue.toString();
+        return this.checkoutQueue.toString();
     }
     public void useCheckout(){
-        checkoutHelper.occupyCheckout(checkouts);
+        this.checkoutHelper.occupyCheckout(checkouts);
     }
     public void freeCheckout(){
-        checkoutHelper.freeCheckout(checkouts);
+        this.checkoutHelper.freeCheckout(checkouts);
     }
 
     public void addCustomerQueue(Customer c){
-        totQueueCustomer++;
+        this.totQueueCustomer++;
         this.overallqueuePeople++;
-        checkoutQueue.läggtill(c);
+        this.checkoutQueue.läggtill(c);
     }
     public Customer nextInLine(){
-        totQueueCustomer--;
+        this.totQueueCustomer--;
         return checkoutQueue.getFirstInLine();
     }
 
     public boolean hasCustomerInQueue(){
-        return !checkoutQueue.isQueueEmpty();
+        return !this.checkoutQueue.isQueueEmpty();
     }
     public boolean hasFreeChckout(){
-        return freeCashoutCount > 0 ;
+        return this.freeCashoutCount > 0 ;
     }
 
 
     /**
      * Calculates total time all the cashouts stood unused in the store
+     *  Time diff
      */
-    public void freeCashoutTime() {
+    private void freeCashoutTime() {
         double eventTimeDifference =  getEventTime() - getPreEventTime() ;
         double cashoutTime = eventTimeDifference * getFreeCashoutCount();
 
@@ -280,7 +269,7 @@ public class SupermarketState extends State {
      */
     private void calcQueueTime(double calculatedTime) {
         if(hasCustomerInQueue() ){
-            totQueueTime += (calculatedTime - getPreEventTime())   * getTotQueueCustomer();
+            this.totQueueTime += (calculatedTime - getPreEventTime())   * getTotQueueCustomer();
         }
     }
 
@@ -289,45 +278,55 @@ public class SupermarketState extends State {
     //------------------StoreStatus------------------//
 
     public boolean isStoreOpen(){
-        return storeStatus == StoreStatus.Open;
+        return this.storeStatus == StoreStatus.Open;
     }
     public void changeStoreStatus() {
         //Swaps storeStatus to opposite store status (open or closed)
-        storeStatus = (storeStatus == StoreStatus.Open) ? StoreStatus.Closed : StoreStatus.Open;
+        this.storeStatus = (this.storeStatus == StoreStatus.Open) ? StoreStatus.Closed : StoreStatus.Open;
     }
     public boolean isStoreFree(){
-        return getTotCustomersInStore() < this.maxCustomers;
+        return this.getTotCustomersInStore() < this.maxCustomers;
     }
     //---------------------TIME---------------------//
 
     public double getArriveTime(double preEndTime) {
-        Object eventType = arrivalTime.getEventType();
+        Object eventType = this.arrivalTime.getEventType();
         return nextEventTime(preEndTime, eventType);
     }
 
     public double getGatherTime(double preEndTime) {
-        Object eventType = gatherTime.getEventType();
+        Object eventType = this.gatherTime.getEventType();
         return nextEventTime(preEndTime, eventType);
     }
 
     public double getPayTime(double preEndTime) {
-        Object eventType = payTime.getEventType();
+        Object eventType = this.payTime.getEventType();
         return nextEventTime(preEndTime, eventType);
     }
 
     public Customer createNewCustomer() {
-        return customerFactory.createCustomer();
+        return this.customerFactory.createCustomer();
     }
 
 
     public double getLastPayTime() {
-        return lastPayTime;
+        return this.lastPayTime;
     }
 
+    /**
+     * The event time for next event is calculated. It is calculated differently based on what event type is passed into the function
+     * nextEventtime = previous eventtime + random generated DELTA
+     * (Delta =uniform distributed for gathertime and paytime / Expo random for arrivetime)
+     *
+     * Sets preEventtime in a variable for upcoming calulations simulation time to next
+     * @param preEndTime eventTime for previous event (discrete)
+     * @param eventType Different event time-type of either arrivetime, gathertime or paytime
+     * @return The event time for NEXT upcoming event
+     */
     private double nextEventTime(double preEndTime, Object eventType) {
         double nextEventTime;
 
-        setPreEventTime(preEndTime);
+
 
         if (eventType instanceof ArrivalTime || preEndTime == 0) {
             nextEventTime = arrivalTime.finishEventTime(preEndTime);
@@ -342,10 +341,10 @@ public class SupermarketState extends State {
 
         super.setTime(nextEventTime); //Sets new Simulator time to next event
 
-        return nextEventTime;
+        return nextEventTime; //Eventtime for next starting Event
     }
 
-    public void setEventTime(double eventTime) {
+    private void setEventTime(double eventTime) {
         this.currentTime = eventTime;
     }
 

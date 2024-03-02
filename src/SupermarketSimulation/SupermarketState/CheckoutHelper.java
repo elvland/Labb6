@@ -3,6 +3,15 @@ package SupermarketSimulation.SupermarketState;
 import SupermarketSimulation.Extra.Enum.CheckoutStatus;
 
 import java.util.ArrayList;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The CheckoutHelper class assists in managing checkout statuses in the supermarket simulation,
+ * including methods to occupy and free checkout counters.
+ */
 
 public class CheckoutHelper {
     private final int totCheckouts;
@@ -40,7 +49,7 @@ public class CheckoutHelper {
 
     }
 
-    public void freeCheckout(CheckoutStatus[] checkOutArray) {
+    protected void freeCheckout(CheckoutStatus[] checkOutArray) {
         if(allCheckoutsEmpty(checkOutArray)){
             System.out.println("all Chechouts Empty");
 
@@ -54,7 +63,7 @@ public class CheckoutHelper {
     }
 
 
-    public boolean availableCashouts(CheckoutStatus[] checkOutArray) {
+    protected boolean availableCashouts(CheckoutStatus[] checkOutArray) {
 
         return countFreeCashiers(checkOutArray) > 0;
     }

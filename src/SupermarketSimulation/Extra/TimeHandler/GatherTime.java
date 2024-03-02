@@ -1,4 +1,14 @@
 package SupermarketSimulation.Extra.TimeHandler;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ */
+
+/**
+ * The GatherTime class implements the TimeStrategy interface to calculate the time it takes for a customer to gather items.
+ */
 
 public class GatherTime implements  TimeStrategy{
 
@@ -10,9 +20,9 @@ public class GatherTime implements  TimeStrategy{
     public double finishEventTime(double currentTime) {
         return  currentTime + uniRandom.next();
     }
-
     @Override
     public Object getEventType() {
         return this;
     }
+
 }

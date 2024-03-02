@@ -5,6 +5,14 @@ import SimulationLibrary.Events.Event;
 import SimulationLibrary.State.State;
 import SupermarketSimulation.Extra.Customer;
 import SupermarketSimulation.SupermarketState.SupermarketState;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The PayEvent class represents an event in the supermarket simulation where a customer pays for their purchases.
+ */
 
 public class PayEvent extends Event {
 

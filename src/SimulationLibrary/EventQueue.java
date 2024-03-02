@@ -4,6 +4,15 @@ import SimulationLibrary.Events.Event;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The EventQueue class represents a queue of events in a simulation .
+ * It manages the addition, retrieval,sorting events based on time and removal of events in the queue.
+ */
 
 public class EventQueue {
 
@@ -32,7 +41,9 @@ public class EventQueue {
         return events.remove(0);
     }
 
-
+    public Event getEvent(int id){
+       return events.get(id);
+    }
     public int size(){
        return this.events.size();
     }
@@ -53,6 +64,7 @@ public class EventQueue {
                 }
             }
         }
+
     }
 
 }

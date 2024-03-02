@@ -4,6 +4,14 @@ import SimulationLibrary.EventQueue;
 import SimulationLibrary.Events.Event;
 import SimulationLibrary.State.State;
 import SupermarketSimulation.SupermarketState.SupermarketState;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The CloseEvent class represents the event of closing a supermarket simulation.
+ */
 
 public class CloseEvent extends Event {
         private double closetime;

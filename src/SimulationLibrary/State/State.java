@@ -1,6 +1,16 @@
 package SimulationLibrary.State;
 
 import java.util.Observable;
+/**
+ * @author Anton Alexandersson
+ * @author Olle Elvland
+ * @author Lukas Eriksson
+ * @author Vincent Gustafsson
+ *
+ * The State class represents the state of the simulation. It extends the Observable class
+ * to allow view observers to be notified of state changes.
+ */
+
 
 public class State extends Observable {
 
@@ -31,10 +41,6 @@ public class State extends Observable {
             this.currentCalculatedTime = time;
         }
 
-    }
-
-    public double getTime(){
-        return this.currentCalculatedTime;
     }
 
 
